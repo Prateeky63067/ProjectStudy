@@ -8,6 +8,7 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import ForgotPassword from "./pages/ForgotPassword";
 import UpdatePassword from "./pages/UpdatePassword";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -46,6 +47,15 @@ function App() {
           element={
             <OpenRoute>
               <UpdatePassword/>
+            </OpenRoute>
+          }
+        />
+
+    <Route
+          path="about"
+          element={
+            <OpenRoute>
+              <About/>
             </OpenRoute>
           }
         />
