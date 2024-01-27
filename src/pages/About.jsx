@@ -5,6 +5,9 @@ import BannerImage2 from "../assets/Images/aboutus2.webp"
 import BannerImage3 from "../assets/Images/aboutus3.webp"
 import Quote from '../components/core/AboutPage/Quote'
 import FoundingStory from "../assets/Images/FoundingStory.png"
+import StatsComponent from '../components/core/AboutPage/StatsComponent'
+import LearningGrid from '../components/core/AboutPage/LearningGrid'
+import ContactFormSection from '../components/core/AboutPage/ContactFormSection'
 
 const About = () => {
   return (
@@ -35,9 +38,9 @@ const About = () => {
         {/* section3 */}
 
         <section>
-            <div>
+            <div className='flex flex-col'>
                 {/* founding story main div */}
-                <div>
+                <div className='flex'>
                     {/* founding story left box */}
                     <div>
                         <h1>Our Founding Story</h1>
@@ -52,11 +55,30 @@ const About = () => {
                 </div>
 
                 {/* vision and mission parent div */}
-                <div>
+                <div className='flex'>
                          {/* left box */}
+                         <div>
+                            <h1>Our Vision</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus fugiat excepturi dolorem praesentium architecto sunt delectus illum illo debitis amet perspiciatis pariatur quasi, odio nostrum tenetur possimus laborum quisquam dignissimos.</p>
+                         </div>
+
+                         {/* right box */}
+                         <div>
+                            <h1>Our Mission</h1>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, magnam laborum. Aut veniam esse, tempore quaerat blanditiis cum enim repudiandae quae dolores optio perspiciatis illum deserunt sunt id, ratione amet!</p>
+                         </div>
                 </div>
             </div>
         </section>
+
+        {/* section 4 */}
+        <StatsComponent/>
+
+        {/* section 5 */}
+           <section className='mx-auto flex flex-col items-center justify-between gap-5'>
+            <LearningGrid/>
+            <ContactFormSection/>
+           </section>
     </div>
   )
 }
