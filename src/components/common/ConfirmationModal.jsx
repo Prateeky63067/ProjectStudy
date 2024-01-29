@@ -12,16 +12,16 @@ const ConfirmationModal = ({modalData}) => {
                 {modalData.text2}
             </p>
             <div>
-                <IconBtn
-                onclick={modalData?.btn1Handler}
-                text={modalData?.btn1Text}
-                />
-
-                <button onclick={modalData?.btn2Handler}>
+                <IconBtn 
+                    onclick={modalData?.btn1Handler}
+                    text={modalData?.btn1Text}
+                    />
+                <button onClick={modalData?.btn2Handler}>
                     {modalData?.btn2Text}
-                </button>
+                </button>    
             </div>
         </div>
+      
     </div>
   )
 }
