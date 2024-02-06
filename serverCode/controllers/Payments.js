@@ -4,6 +4,7 @@ const User = require("../models/User");
 const mailSender = require("../utils/mailSender");
 const {courseEnrollmentEmail} = require("../mail/templates/courseEnrollmentEmail");
 const { default: mongoose } = require("mongoose");
+const CourseProgress = require("../models/CourseProgress");
 
 
 
@@ -123,10 +124,19 @@ exports.verifySignature = async (req, res) => {
 
                 console.log(enrolledCourse);
 
+                const courseProgress=await CourseProgress.create({
+                    courseID:courseId,
+                    userId:userId,
+                    completedVideos:[],
+                })
+
                 //find the student andadd the course to their list enrolled courses me 
                 const enrolledStudent = await User.findOneAndUpdate(
                                                 {_id:userId},
-                                                {$push:{courses:courseId}},
+                                                {$push:{
+                                                    courses:courseId,
+                                                    courseProgress:courseProgress._id
+                                                }},
                                                 {new:true},
                 );
 

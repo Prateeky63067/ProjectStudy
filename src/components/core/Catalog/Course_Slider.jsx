@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from "react"
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react"
 
-import {Swiper, SwiperSlide} from "swiper/react"
+// Import Swiper styles
 import "swiper/css"
 import "swiper/css/free-mode"
 import "swiper/css/pagination"
-import { Autoplay,FreeMode,Navigation, Pagination}  from 'swiper'
+// import "../../.."
+// Import required modules
+import { FreeMode, Pagination } from "swiper"
 
-import Course_Card from './Course_Card'
+// import { getAllCourses } from "../../services/operations/courseDetailsAPI"
+import Course_Card from "./Course_Card"
 
-const CourseSlider = ({Courses}) => {
+function Course_Slider({ Courses }) {
   return (
     <>
       {Courses?.length ? (
@@ -37,4 +42,4 @@ const CourseSlider = ({Courses}) => {
   )
 }
 
-export default CourseSlider
+export default Course_Slider
