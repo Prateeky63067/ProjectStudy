@@ -60,6 +60,9 @@ export default function EnrolledCourses() {
               }`}
               key={i}
             >
+              {
+                console.log("check for mail-->",course.courseContent?.[1]?.subSection?.[1]?._id)
+              }
               <div
                 className="flex w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
                 onClick={() => {

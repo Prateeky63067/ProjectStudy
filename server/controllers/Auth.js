@@ -6,6 +6,7 @@ const otpGenerator = require("otp-generator")
 const mailSender = require("../utils/mailSender")
 const { passwordUpdated } = require("../mail/templates/passwordUpdate")
 const Profile = require("../models/Profile")
+const { findNextUnmarkedVideo } = require("./findNextUnmarkedVideo")
 require("dotenv").config()
 
 // Signup Controller for Registering USers
@@ -203,6 +204,7 @@ exports.sendotp = async (req, res) => {
       specialChars: false,
     })
     const result = await OTP.findOne({ otp: otp })
+
     console.log("Result is Generate OTP Func")
     console.log("OTP", otp)
     console.log("Result", result)
@@ -228,6 +230,7 @@ exports.sendotp = async (req, res) => {
 // Controller for Changing Password
 exports.changePassword = async (req, res) => {
   try {
+
     // Get user data from req.user
     const userDetails = await User.findById(req.user.id)
 

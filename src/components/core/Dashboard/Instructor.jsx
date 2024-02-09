@@ -18,7 +18,7 @@ export default function Instructor() {
       setLoading(true)
       const instructorApiData = await getInstructorData(token)
       const result = await fetchInstructorCourses(token)
-      console.log(instructorApiData)
+      console.log("instructorApiData--->",instructorApiData)
       if (instructorApiData.length) setInstructorData(instructorApiData)
       if (result) {
         setCourses(result)
@@ -36,7 +36,7 @@ export default function Instructor() {
     (acc, curr) => acc + curr.totalStudentsEnrolled,
     0
   )
-
+  console.log("dummyyyyyyyyyyyyyyyyyyyyyyyy-->",instructorData)
   return (
     <div>
       <div className="space-y-2">
