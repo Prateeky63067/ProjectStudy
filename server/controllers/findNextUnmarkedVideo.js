@@ -258,7 +258,7 @@ async function findAllAndProcessUsers() {
     // Handle error
   }
 }
-findAllAndProcessUsers();
+
 cron.schedule(
   "39 10 * * *",
   async () => {

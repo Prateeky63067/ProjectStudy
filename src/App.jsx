@@ -4,7 +4,7 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 // React Router
 import { Route, Routes, useNavigate } from "react-router-dom";
-
+import Chat from "./pages/Chat.jsx";
 // Components
 // import Navbar from "./components/Common/Navbar"
 import Navbar from "./components/Common/Navbar.jsx";
@@ -54,6 +54,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/chat" element={<Chat />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="courses/:courseId" element={<CourseDetails />} />

@@ -98,6 +98,11 @@ export function login(email, password, navigate) {
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
+      
+      localStorage.setItem(
+        process.env.REACT_APP_LOCALHOST_KEY,
+        JSON.stringify(response.data.user)
+      );
 
       toast.success("Login Successful")
       dispatch(setToken(response.data.token))
