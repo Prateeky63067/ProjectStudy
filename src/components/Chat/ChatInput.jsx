@@ -13,6 +13,7 @@ export default function ChatInput({ handleSendMsg }) {
 
   const handleEmojiClick = (event, emojiObject) => {
     let message = msg;
+    console.log("emojiObject-->",emojiObject.srcElement.img)
     message += emojiObject.emoji;
     setMsg(message);
   };
@@ -53,6 +54,7 @@ const Container = styled.div`
   align-items: center;
   grid-template-columns: 5% 95%;
   background-color: #080420;
+  border-bottom:solid 2px #161D29;
   padding: 0 2rem;
   @media screen and (min-width: 720px) and (max-width: 1080px) {
     padding: 0 1rem;

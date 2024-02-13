@@ -36,7 +36,21 @@ export const sidebarLinks = [
     icon: "VscMortarBoard",
   },
   {
+    id: 6,
+    name: "Take Doubt",
+    path: "/dashboard/chat",
+    type: ACCOUNT_TYPE.INSTRUCTOR,
+    icon: "VscQuestion",
+  },
+  {
     id: 7,
+    name: "Ask your Doubt",
+    path: "/dashboard/chat",
+    type: ACCOUNT_TYPE.STUDENT,
+    icon: "VscQuestion",
+  },
+  {
+    id: 8,
     name: "Cart",
     path: "/dashboard/cart",
     type: ACCOUNT_TYPE.STUDENT,

@@ -76,10 +76,11 @@ export default function ChatContainer({ currentChat, socket }) {
     <Container>
       <div className="chat-header">
         <div className="user-details">
-          <div className="avatar">
+          <div className="avatar " >
             <img
-              // src={`data:image/svg+xml;base64,${currentChat.image}`}
-              alt=""
+            className="rounded-full mt-3 "
+             src={`https://api.dicebear.com/5.x/initials/svg?seed=${currentChat.firstName} ${currentChat.lastName}`}
+              alt={currentChat.firstName}
             />
           </div>
           <div className="username">
@@ -119,10 +120,12 @@ const Container = styled.div`
     grid-template-rows: 15% 70% 15%;
   }
   .chat-header {
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
+    background-color:#161D29;
     .user-details {
       display: flex;
       align-items: center;
