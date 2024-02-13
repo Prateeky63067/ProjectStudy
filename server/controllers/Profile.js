@@ -241,3 +241,52 @@ exports.instructorDashboard = async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 };
+
+// exports.UserDetailsById = async (req, res) => {
+//   try {
+//     const { id } = req.body;
+//     console.log("req.body--->", req.body);
+//     console.log("id hai ye", id);
+//     const existingUser = await User.findById(id);
+//     if (existingUser) {
+//       return res.status(200).json({
+//         success: true,
+//         existingUser,
+//       });
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({
+//       success: false,
+//       message: "User not exist",
+//     });
+//   }
+// };
+
+
+exports.UserDetailsById = async (req, res) => {
+  try {
+    const { id } = req.body;
+    console.log("req.body--->", req.body);
+    console.log("id hai ye", id);
+    const existingUser = await User.findById(id);
+    if (existingUser) {
+      return res.status(200).json({
+        success: true,
+        existingUser,
+      });
+    }
+    // If user doesn't exist
+    return res.status(404).json({
+      success: false,
+      message: "User does not exist",
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+
