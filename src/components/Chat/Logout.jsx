@@ -17,9 +17,10 @@ export default function Logout() {
     }
   };
   return (
-    <Button onClick={handleClick}>
-      <BiPowerOff />
-    </Button>
+    // <Button onClick={handleClick}>
+    //   <BiPowerOff />
+    // </Button>
+    <></>
   );
 }
 
