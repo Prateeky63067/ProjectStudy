@@ -24,7 +24,7 @@ function Dashboard() {
         <div className="mx-auto w-11/12 max-w-[1000px] py-10">
           <Outlet />
         </div>
-        <div className="flex justify-end sticky bottom-3 mr-4 hover:cursor-pointer">
+        <div className=" sticky bottom-3 right-0 hover:cursor-pointer w-[20%]">
         <Link to="dashboard/chat">
          <IoMdChatbubbles  className="text-blue-5 text-5xl "/>
         </Link>
