@@ -4,7 +4,7 @@ import { NavLink, matchPath, useLocation } from "react-router-dom"
 
 import { resetCourseState } from "../../../slices/courseSlice"
 
-export default function SidebarLink({ link, iconName }) {
+export default function SidebarLink({ link, iconName ,setSidebarVisible,isSidebarVisible}) {
   const Icon = Icons[iconName]
   const location = useLocation()
   const dispatch = useDispatch()
@@ -12,11 +12,17 @@ export default function SidebarLink({ link, iconName }) {
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname)
   }
+   
+  const onclick=()=>{
+    dispatch(resetCourseState());
+    setSidebarVisible(!isSidebarVisible);
 
+
+  }
   return (
     <NavLink
       to={link.path}
-      onClick={() => dispatch(resetCourseState())}
+      onClick={onclick}
       className={`relative px-8 py-2 text-sm font-medium ${
         matchRoute(link.path)
           ? "bg-yellow-800 text-yellow-50"

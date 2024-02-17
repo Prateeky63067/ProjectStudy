@@ -98,7 +98,7 @@ export function login(email, password, navigate) {
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
-      
+      // setItem in localStorage
       localStorage.setItem(
         process.env.REACT_APP_LOCALHOST_KEY,
         JSON.stringify(response.data.user)

@@ -7,6 +7,8 @@ import { allUsersRoute, host } from "../utils/APIRoutes";
 import ChatContainer from "../components/Chat/ChatContainer";
 import Contacts from "../components/Chat/Contacts";
 import Welcome from "../components/Chat/Welcome";
+import { useMediaQuery } from "@react-hook/media-query";
+import { FaAnglesLeft } from "react-icons/fa6";
 
 export default function Chat() {
   const navigate = useNavigate();
@@ -15,6 +17,9 @@ export default function Chat() {
   const [currentChat, setCurrentChat] = useState(undefined);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [loading, setLoading] = useState(false); // Add loading state
+  const isMobile = useMediaQuery("(max-width: 767px)");
+  const islaptop = useMediaQuery("(min-width: 769px)");
+  const [mobile, setMobile] = useState(isMobile);
 
   useEffect(() => {
     const fun1 = async () => {
@@ -62,18 +67,64 @@ export default function Chat() {
 
   return (
     <>
-      {
-        <Container>
+
+{isMobile&&
+        <Container className="md:w-[67vw] w-[90vw]">
+          <div className="relative">
           <div className="container">
-            <Contacts contacts={contacts} changeChat={handleChatChange} />
-            {console.log("currentChat hai ye-->", currentChat)}
-            {currentChat === undefined ? (
-              <Welcome />
-            ) : (
-              <ChatContainer currentChat={currentChat} socket={socket} />
+            {(mobile || islaptop) && (
+              <Contacts
+                contacts={contacts}
+                changeChat={handleChatChange}
+                setMobile={setMobile}
+                mobile={mobile}
+              />
             )}
+
+            {console.log("currentChat hai ye-->", currentChat)}
+            {currentChat === undefined
+              ? !mobile && <Welcome />
+              : !mobile && (
+                  <ChatContainer
+                    currentChat={currentChat}
+                    socket={socket}
+                    mobile={mobile}
+                  />
+                )}
+          </div>
+          {!mobile&&<div className="text-white absolute top-[50%] -right-2 ">
+            <FaAnglesLeft className="text-2xl" onClick={()=>setMobile(!mobile)}/>
+          </div>}
           </div>
         </Container>
+       } 
+      {islaptop&&
+        <Container className="md:w-[67vw] w-[90vw]">
+      
+        <div className="container">
+          {(mobile || islaptop) && (
+            <Contacts
+              contacts={contacts}
+              changeChat={handleChatChange}
+              setMobile={setMobile}
+              mobile={mobile}
+            />
+          )}
+  
+          {console.log("currentChat hai ye-->", currentChat)}
+          {currentChat === undefined
+            ? !mobile && <Welcome />
+            : !mobile && (
+                <ChatContainer
+                  currentChat={currentChat}
+                  socket={socket}
+                  mobile={mobile}
+                />
+              )}
+        </div>
+       
+        
+      </Container>
       }
     </>
   );
@@ -81,17 +132,17 @@ export default function Chat() {
 
 const Container = styled.div`
   height: 75vh;
-  width: 90%;
+ 
   display: flex;
   // flex-direction: column;
   // justify-content: center;
   gap: 1rem;
   align-items: center;
-  background-color: #161D29;
- 
+  background-color: #161d29;
+
   .container {
     height: 85vh;
-    
+
     width: 85vw;
     background-color: #00000076;
     display: grid;

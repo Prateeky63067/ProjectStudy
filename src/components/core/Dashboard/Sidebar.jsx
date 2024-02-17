@@ -8,7 +8,7 @@ import { logout } from "../../../services/operations/authAPI"
 import ConfirmationModal from "../../Common/ConfirmationModal"
 import SidebarLink from "./SidebarLink"
 
-export default function Sidebar() {
+export default function Sidebar({setSidebarVisible,isSidebarVisible}) {
   const { user, loading: profileLoading } = useSelector(
     (state) => state.profile
   )
@@ -28,12 +28,13 @@ export default function Sidebar() {
 
   return (
     <>
-      <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10">
+      <div className="flex h-[calc(100vh-3.5rem)] md:w-[220px] w-[100vw] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10" 
+      >
         <div className="flex flex-col">
           {sidebarLinks.map((link) => {
             if (link.type && user?.accountType !== link.type) return null
             return (
-              <SidebarLink key={link.id} link={link} iconName={link.icon} />
+              <SidebarLink key={link.id} link={link} iconName={link.icon} setSidebarVisible={setSidebarVisible} isSidebarVisible={isSidebarVisible}/>
             )
           })}
         </div>
@@ -41,7 +42,8 @@ export default function Sidebar() {
         <div className="flex flex-col">
           <SidebarLink
             link={{ name: "Settings", path: "/dashboard/settings" }}
-            iconName="VscSettingsGear"
+            iconName="VscSettingsGear" 
+            setSidebarVisible={setSidebarVisible} isSidebarVisible={isSidebarVisible}
           />
           <button
             onClick={() =>

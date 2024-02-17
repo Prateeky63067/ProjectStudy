@@ -6,10 +6,11 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { sendMessageRoute, recieveMessageRoute } from "../../utils/APIRoutes";
 
-export default function ChatContainer({ currentChat, socket }) {
+export default function ChatContainer({ currentChat, socket ,mobile}) {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
+  // const [widthClass, setWidthClass] = useState(!mobile?"w-[90vw]":"w-[17.053vw]");
 
   useEffect(() => {
     const fun1 = async () => {
@@ -73,7 +74,7 @@ export default function ChatContainer({ currentChat, socket }) {
   }, [messages]);
 
   return (
-    <Container>
+    <Container className="w-[90vw] md:w-[50vw]">
       <div className="chat-header">
         <div className="user-details">
           <div className="avatar " >
@@ -163,6 +164,7 @@ const Container = styled.div`
         max-width: 40%;
         overflow-wrap: break-word;
         padding: 1rem;
+        
         font-size: 1.1rem;
         border-radius: 1rem;
         color: #d1d1d1;

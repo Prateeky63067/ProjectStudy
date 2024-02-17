@@ -6,6 +6,7 @@ const mailSender = require("../utils/mailSender");
 const ObjectId = require("mongodb").ObjectId;
 const cron = require("node-cron");
 const User = require("../models/User");
+const { motivation } = require("../mail/templates/motivation")
 
 // quote start
 
@@ -182,11 +183,14 @@ async function findAndProcessUsers(user_id) {
     }
 
     // Check if the user has at least one course present
-    if (user.courses.length > 0) {
+    let content;
+    let author;
+    if (user.courses.length > 0 && user.accountType=="Student") {
       // Iterate through each course and call findNextUnmarkedVideo for each
       for (const course of user.courses) {
         const result = await findNextUnmarkedVideo(user_id, course._id);
         // Do something with the result if needed
+     
         if (result !== null) {
           console.log("result-->", result);
           const sectionId = result.sectionId.toString();
@@ -200,8 +204,7 @@ async function findAndProcessUsers(user_id) {
           const url = `http://localhost:3000/view-course/${course_id}/section/${sectionId}/sub-section/${nextSubsectionId}`;
 
           // generate a quote
-          let content;
-          let author;
+         
 
           getMotivationalQuote()
             .then((quote) => {
@@ -212,17 +215,7 @@ async function findAndProcessUsers(user_id) {
               mailSender(
                 `${user.email}`,
                 "Go and start Learning",
-                `<div style="margin:0 auto ; width: 50% ; background-color: #beaaaa; display: flex; flex-direction: column; align-items: center; padding: 50px 0px; border-radius: 8px;">
-                <div style="display: inline-block; ">
-                    <h1 style="text-align: center; color: green;">Thought of the day</h1>
-                    <i style="color: rgb(3, 40, 40); font: bold;">You yourself must strive. The Buddhas only point the way.</i> <h6 style="text-align: right; margin: 0; padding: 0; margin-top: 6px; color: rgb(3, 40, 40);">-The Buddha</h6>
-                </div>
-                <div style="text-align: center;">
-                    <p>
-                        <h3 style="margin: 0; padding: 0;">Lets start our learning-</h3> ${url}
-                    </p>
-                </div>
-              </div>`
+                motivation(url,content)
               );
               console.log("Email sent successfully!");
             })
@@ -235,7 +228,12 @@ async function findAndProcessUsers(user_id) {
         // console.log(`Result for user ${user_id} and course ${course._id}:`, result);
       }
     } else {
-      console.log(`User ${user_id} does not have any courses`);
+      mailSender(
+        `${user.email}`,
+        "Go and start Learning",
+        motivation("","Oppurtunities don't happen, you create them.")
+       
+      );
     }
   } catch (error) {
     console.error("Error finding and processing users:", error);
@@ -260,7 +258,7 @@ async function findAllAndProcessUsers() {
 }
 
 cron.schedule(
-  "39 10 * * *",
+  "15 18 * * *",
   async () => {
     try {
       findAllAndProcessUsers();
@@ -272,14 +270,3 @@ cron.schedule(
     timezone: "Asia/Kolkata", // Set your timezone
   }
 );
-
-// let content;
-// let author;
-// getMotivationalQuote()
-//   .then((quote) => {
-//     content = quote.content;
-//     author = quote.author;
-//     console.log(content)
-//     console.log(author)
-//   })
-//   .catch((error) => console.error(error));

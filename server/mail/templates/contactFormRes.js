@@ -34,6 +34,7 @@ exports.contactUsEmail = (
           .logo {
               max-width: 200px;
               margin-bottom: 20px;
+              filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(200deg);
           }
   
           .message {
@@ -74,8 +75,8 @@ exports.contactUsEmail = (
   
   <body>
       <div class="container">
-          <a href="https://studynotion-edtech-project.vercel.app"><img class="logo"
-                  src="https://i.ibb.co/7Xyj3PC/logo.png" alt="StudyNotion Logo"></a>
+          <a href="https://pedagox-a-learning-app.vercel.app/"><img class="logo"
+                  src="https://i.postimg.cc/3R84Njb2/logos-1.png" alt="Logo"></a>
           <div class="message">Contact Form Confirmation</div>
           <div class="body">
               <p>Dear ${firstname} ${lastname},</p>
@@ -89,7 +90,7 @@ exports.contactUsEmail = (
               <p>We appreciate your interest and will get back to you shortly. </p>
           </div>
           <div class="support">If you have any further questions or need immediate assistance, please feel free to reach
-              out to us at <a href="mailto:info@studynotion.com">info@studynotion.com</a>. We are here to help!</div>
+              out to us at <a href="mailto:info@pedagox.com">info@pedagox.com</a>. We are here to help!</div>
       </div>
   </body>
   

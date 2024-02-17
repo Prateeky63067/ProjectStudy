@@ -451,12 +451,17 @@ import Logo from "../../assets/logo.svg";
 import { useSelector } from "react-redux";
 import { fetchCourseDetails } from "../../services/operations/courseDetailsAPI";
 import { fetchUserData } from "../../services/operations/profileAPI";
+import { useMediaQuery } from "@react-hook/media-query";
 
-export default function Contacts({ contacts, changeChat }) {
+export default function Contacts({ contacts, changeChat,setMobile,mobile }) {
+  const isMobile = useMediaQuery("(max-width: 767px)");
   const [currentUser, setCurrentUser] = useState({});
   const [currentSelected, setCurrentSelected] = useState(undefined);
   const [contactAsStudent, setContactAsStudent] = useState([]);
   const [contactInstructor, setContactInstructor] = useState([]);
+  const[chatView,setChatview]=useState(false);
+  const [widthClass, setWidthClass] = useState(mobile?"w-[90vw]":"w-[17.055vw]");
+ 
 
   const { user } = useSelector((state) => state.profile);
 
@@ -548,6 +553,8 @@ console.log("first-7777777777777",uniqueEntriesIns)
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
     changeChat(contact);
+    isMobile&&setMobile(!mobile);
+    mobile&&setWidthClass("w-[0vw]")
   };
   let arrayData=[];
   if(user?.accountType === "Instructor")
@@ -560,7 +567,7 @@ console.log("first-7777777777777",uniqueEntriesIns)
   console.log("arrayData-->",arrayData)
 
   return (
-    <Container>
+    <Container className={widthClass}>
       {currentUser && (
         <>
           <div className="brand">
@@ -606,6 +613,7 @@ console.log("first-7777777777777",uniqueEntriesIns)
 }
 
 const Container = styled.div`
+  
   display: grid;
   grid-template-rows: 10% 75% 15%;
   overflow: hidden;

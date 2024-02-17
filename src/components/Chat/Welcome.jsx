@@ -26,7 +26,8 @@ export default function Welcome() {
 }
 
 const Container = styled.div`
-  display: flex;
+display: flex;
+
   justify-content: center;
   align-items: center;
   color: white;

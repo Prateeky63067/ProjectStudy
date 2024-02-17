@@ -1,10 +1,10 @@
-exports.paymentSuccessEmail = (name, amount, orderId, paymentId) => {
-  return `<!DOCTYPE html>
+exports.motivation = (url, quote) => {
+    return `<!DOCTYPE html>
     <html>
     
     <head>
         <meta charset="UTF-8">
-        <title>Payment Confirmation</title>
+        <title>Course Registration Confirmation</title>
         <style>
             body {
                 background-color: #ffffff;
@@ -69,18 +69,21 @@ exports.paymentSuccessEmail = (name, amount, orderId, paymentId) => {
     <body>
         <div class="container">
             <a href="https://pedagox-a-learning-app.vercel.app/"><img class="logo" src="https://i.postimg.cc/3R84Njb2/logos-1.png"
-                    alt="Logo" color="grey"></a>
-            <div class="message">Course Payment Confirmation</div>
+                    alt=" Logo"></a>
+            <div class="message">Motivational quote</div>
             <div class="body">
-                <p>Dear ${name},</p>
-                <p>We have received a payment of <span class='highlight'>₹${amount}</span></p>.
-                <p>Your Payment ID is <b>${paymentId}</b></p>
-                <p>Your Order ID is <b>${orderId}</b></p>
+                <p>Dear ${quote},</p>
+                <p>Hii <span class="highlight">"${url}"</span>. 
+                    user</p>
+                <p>Please log in to your learning dashboard to access the course materials and start your learning journey.
+                </p>
+                <a class="cta" href="https://pedagox-a-learning-app.vercel.app/dashboard">Go to Dashboard</a>
             </div>
             <div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
                     href="mailto:info@pedagox.com">info@pedagox.com</a>. We are here to help!</div>
         </div>
     </body>
     
-    </html>`
-}
+    </html>`;
+  };
+  
